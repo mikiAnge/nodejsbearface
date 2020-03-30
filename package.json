@@ -1,0 +1,23 @@
+{
+  "name": "nodejsbearface",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src",
+    "dev": "nodemon src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

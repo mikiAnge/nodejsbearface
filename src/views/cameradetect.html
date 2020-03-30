@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--SCRIPTS DE RECONOCIMIENTO-->
+
+    <script defer src="/script/face-api.min.js"></script>
+    <script defer src="/script/sccamera.js"></script>
+    <%- include('partials/head.html') %>
+</head>
+
+<body>
+    <%- include('partials/navigation.html') %>
+    <!--Para hacer ajustes en el tamaño del canvas tocar aqui solo para video-->
+    <div class="Contenedor" id="contenedor">
+        <video id="video" width="860" height="646" autoplay></video>
+    </div>
+    <%- include('partials/footer.html') %>
+</body>
+
+</html>
