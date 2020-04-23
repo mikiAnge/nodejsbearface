@@ -1,0 +1,29 @@
+<!--Mostrando los datos en el navegador-->
+<div class="row">
+    {{#each registers}}
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-tittle d-flex justify-content-between align-items-center">
+                    {{title}} <a href="/registers/edit/{{id}}"><i class="fa fa-edit"></i></a>
+                </h4>
+                <p> {{description}} </p>
+                <form action="/registers/delete/{{id}}?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i>
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <!--Si no hay datos mostrara un mesaje por pantalla-->
+    <div class="card mx-auto">
+        <div class="card-body">
+            <p class="lead">There are not notes yet.</p>
+            <a href="/registers/add" class="btn btn-success btn-block">Create One!</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

@@ -1,24 +1,18 @@
-const express = require('express')
-const router = express.Router()
+const { Router } = require('express')
+const router = Router()
 
-router.get('/', (req, res) => {
-    res.render('index.html', { title: 'Detección de Rostros' })
-})
+const { renderIndex,renderImage, renderCamera, renderVideo } = require('../controllers/index.controller')
 
-router.get('/imagedetect', (req, res) => {
-    res.render('imagedetect.html', { title: 'Image Detection' })
-})
+router.get('/', renderIndex)
 
-router.get('/cameradetect', (req, res) => {
-    res.render('cameradetect.html', { title: 'Camera Detection' })
-})
+//router.get('/imagedetect', renderImage)
 
-router.get('/videodetect', (req, res) => {
-    res.render('videodetect.html', { title: 'Video Detection' })
-})
+router.get('/imagedetect/:name/:lastname', renderImage)
 
-router.get('/contact', (req, res) => {
-    res.render('contact.html', { title: 'Contact Detection' })
-})
+router.get('/cameradetect', renderCamera)
+
+//router.get('/videodetect', renderVideo)
+router.get('/videodetect/:name/:lastname', renderVideo)
+
 
 module.exports = router

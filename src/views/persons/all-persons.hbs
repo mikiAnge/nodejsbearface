@@ -1,0 +1,53 @@
+<!--Mostrando los datos en el navegador-->
+<div class="container p-4">
+<div class="offset-md-3">
+    <form action="/persons/see" method="POST">
+        <div class="form-row align-items-center">
+            <div class="col-sm-3 my-1">
+                <input type="text" class="form-control text-center" name="name" placeholder="name">
+            </div>
+            <div class="col-sm-3 my-1">
+                <input type="text" class="form-control text-center" name="lastname" placeholder="lastname" autocapitalize="words">
+            </div>
+            <div class="col-auto my-1">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-user"></i> Ver
+                    Datos</button>
+            </div>
+
+        </div>
+    </form>
+    </div>
+    <div class="row">
+        {{#each persons}}
+        <div class="col-md-4">
+            <div class="card animated fadeInRight">
+                <img src="{{path}}" class="card-img-top imgperson">
+                <div class="card-body">
+                    <h5 class="card-tittle">
+                        {{name}} {{lastname}}
+                    </h5>
+                    <h5 class="card-tittle">
+                        Edad: {{age}}
+                    </h5>
+                    <p class="card-text"> {{description}} </p>
+                    <p class="card-text"> {{time_ago updatedAt}} </p>
+                    <form action="/persons/delete/{{id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-block btn-sm"><i class="fa fa-trash"></i>
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <!--Si no hay datos mostrara un mesaje por pantalla-->
+        <div class="card mx-auto">
+            <div class="card-body">
+                <p class="lead">There are not registers yet.</p>
+                <a href="/persons/add" class="btn btn-success btn-block">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

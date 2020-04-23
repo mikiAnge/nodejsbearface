@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand animated rubberBand" href="/">FaceDetection</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i>Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reconocimiento AI
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/imagedetect"><i class="fas fa-image"></i> Imagen Detect</a>
+                        <a class="dropdown-item" href="/cameradetect"><i class="fas fa-camera-retro"></i> Camara
+                            Detect</a>
+                        <a class="dropdown-item" href="/videodetect"><i class="fas fa-video"></i> Video Detect</a>
+                    </div>
+                </li>
+            </ul>
+            <!--
+            <ul class="navbar-nav ml-auto">
+                {{#if user}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Registros
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/registers">All Registros</a>
+                        <a class="dropdown-item" href="/registers/add">Add Registros</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/logout">Logout</a>
+                    </div>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a href="/users/singin" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users/singup" class="nav-link">Registro</a>
+                </li>
+                {{/if}}
+            </ul> -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Registros
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/persons">Ver Registros</a>
+                        <a class="dropdown-item" href="/persons/add">Añadir Datos</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/logout">Logout</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="/users/singin" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users/singup" class="nav-link">Registro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

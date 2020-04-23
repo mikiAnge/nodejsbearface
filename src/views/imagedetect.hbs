@@ -1,0 +1,29 @@
+<head>
+    <!--SCRIPTS DE RECONOCIMIENTO-->
+    <script defer src="/script/face-api.min.js"></script>
+    <script defer src="/script/scimage.js"></script>
+</head>
+<div class="container p-2">
+    <div class="offset-md-3">
+        <div class="row text-center">
+            {{#with persons.[0]}}
+            <h1>
+                {{name}} {{lastname}} > Edad: {{age}}
+            </h1>
+            <input type="hidden" id="name" value="{{name}} ">
+            <input type="hidden" id="lastname" value="{{lastname}}">
+            {{/with}}
+            <div class="d-none">
+                <table id="path">
+                    {{#each persons}}
+                    <tr>
+                        <td>{{path}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="file" id="imageUpload">
+<div class="Contenedor" id="contenedor"> </div>

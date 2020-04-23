@@ -1,14 +1,25 @@
 body {
-    background: #2980B9;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    /*modificar todos estos de arriba para el color*/
+    background: #616161;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #9bc5c3, #616161);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
     font-family: 'Shadows Into Light', cursive;
     /*Para que el footer siempre este abajo*/
     position: relative;
     min-height: 100vh;
     text-align: center;
+}
+
+.logo {
+    padding: 0;
+    width: 50%;
+    position: relative;
+}
+
+.imgperson {
+    padding: 0;
+    position: relative;
 }
 
 a {
@@ -62,6 +73,9 @@ video {
   
 /*Footer siempre abajo*/
 footer{
+    background: #616161;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #9bc5c3, #616161);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     position: absolute;
     left: 0;
     bottom: 0;
