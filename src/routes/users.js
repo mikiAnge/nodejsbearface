@@ -3,9 +3,12 @@ const router = express.Router()
 
 const { renderSingUpForm, renderSingInForm, singup, singin, logout } = require('../controllers/users.controller')
 
-router.get('/users/singup', renderSingUpForm)
+//importando funcion que protege rutas que no es accesible para todos
+const {isAuthenticated} = require('../helpers/validateauth')
 
-router.post('/users/singup', singup)
+router.get('/users/singup', isAuthenticated, renderSingUpForm)
+
+router.post('/users/singup', isAuthenticated, singup)
 
 router.get('/users/singin', renderSingInForm)
 

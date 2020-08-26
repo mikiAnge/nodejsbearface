@@ -8,14 +8,34 @@ personCtrl.renderPersonForm = (req, res) => {
 }
 
 personCtrl.uploadPerson = async (req, res) => {
+    const errors = []
     const { name, lastname, age, description } = req.body
     const { filename, originalname, mimetype, size } = req.file
     const path = '/media/labeled_images/' + req.file.filename
-    const newPerson = new Person({ name, lastname, age, description, filename, path, originalname, mimetype, size })
 
-    await newPerson.save()
-    req.flash('success_msg', 'Datos Añadidos Satisfactoriamente')
-    res.redirect('/persons')
+    if (name == "") {
+        errors.push({text: 'Rellene el campo de nombre'})
+    }
+    if (lastname == ""){
+        errors.push({text: 'Rellene el campo de apellido'})
+    }
+    if (age == "") {
+        errors.push({text: 'Rellene el campo de edad'})
+    }
+    if (filename == ""){
+        errors.push({text: 'Debe seleccionar una imagen'})
+    }
+    if (errors.length > 0) {
+        res.render('persons/register-person', {
+            errors, name, lastname, age, description
+        })
+    } else{
+        const newPerson = new Person({ name, lastname, age, description, filename, path, originalname, mimetype, size })
+
+        await newPerson.save()
+        req.flash('success_msg', 'Datos Añadidos Satisfactoriamente')
+        res.redirect('/persons')
+    }
 }
 
 personCtrl.renderRegisterPersons = async (req, res) => {

@@ -16,14 +16,14 @@
                         Reconocimiento AI
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/imagedetect"><i class="fas fa-image"></i> Imagen Detect</a>
+                        <a class="dropdown-item" href="/imagedetect/{{''}}/{{''}}"><i class="fas fa-image"></i> Imagen Detect</a>
                         <a class="dropdown-item" href="/cameradetect"><i class="fas fa-camera-retro"></i> Camara
                             Detect</a>
-                        <a class="dropdown-item" href="/videodetect"><i class="fas fa-video"></i> Video Detect</a>
+                        <a class="dropdown-item" href="/videodetect/{{''}}/{{''}}"><i class="fas fa-video"></i> Video Detect</a>
                     </div>
                 </li>
             </ul>
-            <!--
+
             <ul class="navbar-nav ml-auto">
                 {{#if user}}
                 <li class="nav-item dropdown">
@@ -32,21 +32,33 @@
                         Registros
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/registers">All Registros</a>
-                        <a class="dropdown-item" href="/registers/add">Add Registros</a>
+                        <a class="dropdown-item" href="/persons">Ver Registros</a>
+                        <a class="dropdown-item" href="/persons/add">Añadir Datos</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/users/logout">Logout</a>
                     </div>
                 </li>
                 {{else}}
                 <li class="nav-item">
-                    <a href="/users/singin" class="nav-link">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/users/singup" class="nav-link">Registro</a>
+                    <a href="/users/singin" class="nav-link bg-success">Login</a>
                 </li>
                 {{/if}}
-            </ul> -->
+                {{#with user as | users |}}
+                    {{#compare users.email "!=" 'admin@prueba.com'}}
+                        <li class="nav-item">
+                            <a href="/users/singup" class="nav-link">New User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-danger" href="/users/logout">Logout</a>
+                        </li>
+                    {{else}}
+                        <li class="nav-item">
+                            <a class="nav-link bg-danger" href="/users/logout">Logout</a>
+                            <a>{{users}}</a>
+                        </li>
+                    {{/compare}}
+                {{/with}}
+            </ul>
+            <!--
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -66,7 +78,7 @@
                 <li class="nav-item">
                     <a href="/users/singup" class="nav-link">Registro</a>
                 </li>
-            </ul>
+            </ul>-->
         </div>
     </div>
 </nav>

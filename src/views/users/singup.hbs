@@ -1,17 +1,42 @@
-<div class="container p-2"></div>
-<div class="row mx-auto">
+<div class="container p-4">
+<div class="row">
     <div class="col-md-4 mx-auto">
         <div class="card">
             <div class="card-header">
-                Account Register
+                Registro de Usuario
             </div>
             <div class="card-body">
                 <form action="/users/singup" method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name" placeholder="Name" value="{{name}}">
+                        <!--Agregar mas campos para el registro, como se pide el nombre, apellido, C.I. para la verificar que no se realicen dobles registros, numero de contacto(TEL/CEL), correo electrónico, nombre de usuario y contraseña-->
+                        <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{nombre}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="lastname" placeholder="Apellido" value="{{apellido}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="numcontact" placeholder="Numero de Cel" value="{{123456978}}">
+                    </div>
+                    <div class="form-group row">
+                        <input type="text" class="form-control col-sm-6 mx-3" name="ci" placeholder="Ci" value="{{0123456789}}" pattern="[0-9].{7,}" title="Ingrese solo numeros Ejm:0123456789">
+                        <select class="form-control col-sm-4" name="extension">
+                            <option>Extension</option>
+                            <option>Tja</option>
+                            <option>Cbba</option>
+                            <option>Chq</option>
+                            <option>Sc</option>
+                            <option>Pt</option>
+                            <option>Or</option>
+                            <option>Lp</option>
+                            <option>Bn</option>
+                            <option>Pd</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nameuser" placeholder="Nombre de Usuario" value="{{username}}">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="Password">
@@ -27,4 +52,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

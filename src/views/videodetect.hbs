@@ -24,8 +24,23 @@
                     {{/each}}
                 </table>
             </div>
-            <input type="file" id="videoUpload">
         </div>
     </div>
+{{#if persons}}
+    <input type="file" id="videoUpload">
+    <div id="resobt"></div>
 </div>
 <video id="video" width="860" height="484" autoplay loop muted></video>
+{{else}}
+<div class="container p-2">
+    <div class="bg-info p-5">
+        <h2>Nota:</h2>
+        <p>Para usar la herramienta de analisis de video, primeramente necesita estar Logueado
+        </p>
+        <img src="/style/img/login.png" class="mx-auto d-block m-4 logo">
+        <p>Una vez se encuentre logueado en al herramienta, necesita revisar si los datos de la persona ha buscar se encuentran registrados, de lo contrario registrar los nuevos datos, echo esto se requerira el nombre y el apellido como datos para la busqueda
+        </p>
+        <img src="/style/img/busqueda.png" class="mx-auto d-block m-4 logo">
+    </div>
+</div>
+{{/if}}

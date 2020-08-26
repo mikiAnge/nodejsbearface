@@ -2,6 +2,10 @@ const videoUpload = document.getElementById('videoUpload')
 const video = document.getElementById('video')
 const name = document.getElementById('name').value
 const lastname = document.getElementById('lastname').value
+let cont
+
+//
+document.getElementById('resobt').append('Espere un momento...')
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -13,7 +17,7 @@ Promise.all([
 
 
 async function startVideo() {
-    //
+
     const labeledFaceDescriptors = await loadLabeledImages()
     const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
     //console.log(faceMatcher)
@@ -21,22 +25,32 @@ async function startVideo() {
     //En el caso de usar una bd colocar una variable para asignar la ruta
     let videoUp
     let canvas
+
+    document.getElementById('resobt').innerHTML = ""
+    document.getElementById('resobt').append('Cargado!!!')
+
     videoUpload.addEventListener('change', async () => {
         if (videoUp) videoUp.remove()
         if (canvas) canvas.remove()
         video.src = URL.createObjectURL(videoUpload.files[0])
         //console.log(video.src)
-
     })
 
     video.addEventListener('play', async () => {
+    
         canvas = faceapi.createCanvasFromMedia(video)
         //document.getElementById('vidcont').append(canvas)
         document.body.append(canvas)
         const displaySize = { width: video.width, height: video.height }
         faceapi.matchDimensions(canvas, displaySize)
 
+        document.getElementById('resobt').innerHTML = ""
+
+        //añadido para pruebas
+        cont = 0
+
         setInterval(async () => {
+    
             const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
                 .withFaceLandmarks()
                 .withFaceDescriptors()//
@@ -50,6 +64,7 @@ async function startVideo() {
             results.forEach((result, i) => {
                 //verificando, si coincide mostrar canvas
                 if (result.label != 'unknown') {
+                    document.getElementById('resobt').innerHTML=""
                     const box = resizedDetections[i].detection.box
                     const drawBox = new faceapi.draw.DrawBox(
                         //modificador del canvas que se visualizara
@@ -63,6 +78,10 @@ async function startVideo() {
                             label: result.toString()
                         })
                     drawBox.draw(canvas)
+                    //dato añadido para prueba de cantidad de rostros reconocidos
+                    cont ++
+                    document.getElementById('resobt').append('Datos analizados '+cont)
+                    
                 }
             })
             //console.log(results)

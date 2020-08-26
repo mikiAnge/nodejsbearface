@@ -4,9 +4,32 @@ const bcrypt = require('bcryptjs')
 const UserSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: false
+    },
+    lastname: {
+        type: String,
+        required: false,
+        unique: true
+    },
+    ci: {
+        type: String,
+        required: false,
+        unique: true
+    },
+    extension: {
+        type: String,
+        required: false
+    },
+    numcontact: {
+        type: Number,
+        required: false
     },
     email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    nameuser: {
         type: String,
         required: true,
         unique: true

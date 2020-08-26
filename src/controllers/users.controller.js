@@ -10,29 +10,40 @@ usersCtrl.renderSingUpForm = (req, res) => {
 
 usersCtrl.singup = async (req, res) => {
     const errors = []
-    const {name, email, password, confirm_password} = req.body
+    const {name, lastname, ci, extension, numcontact, email, nameuser, password, confirm_password} = req.body
     if (password != confirm_password) {
-        errors.push({text: 'Passwords do not match'})
+        errors.push({text: 'Las contraseñas no son iguales'})
     }
     if (password.length < 4) {
-        errors.push({text: 'Passwords must be at least 4 characters.'})
+        errors.push({text: 'La contraseña debe contener mas de 4 caracteres'})
     }
     if (errors.length > 0) {
         res.render('users/singup', {
             errors,
             name,
-            email
+            lastname,
+            ci,
+            extension,
+            numcontact,
+            email,
+            nameuser
         })
     } else{
         const emailUser = await User.findOne({email: email})
+        const nameUser = await User.findOne({nameuser: nameuser})
         if (emailUser) {
-            req.flash('error_msg', 'The email is already in use')
+            req.flash('error_msg', 'El email esta en uso')
             res.redirect('/users/singup')
-        } else {
-            const newUser = new User({name, email, password})
+        } 
+        if (nameUser) {
+            req.flash('error_msg', 'El nombre de usuario esta en uso')
+            res.redirect('/users/singup')
+        }
+        else {
+            const newUser = new User({name, lastname, ci, extension, numcontact, email, nameuser, password})
             newUser.password = await newUser.encryptPassword(password)
             await newUser.save()
-            req.flash('success_msg', 'You are Registered')
+            req.flash('success_msg', 'Registrado correctamente')
             res.redirect('/users/singin')
         }
     }
@@ -44,13 +55,14 @@ usersCtrl.renderSingInForm = (req, res) => {
 
 usersCtrl.singin = passport.authenticate('local', {
     failureRedirect: '/users/singin',
-    successRedirect: '/registers',
+    //successRedirect: '/registers',
+    successRedirect: '/persons',
     failureFlash: true
 })
 
 usersCtrl.logout = (req, res) => {
     req.logout()
-    req.flash('success_msg', 'You are logged out now.')
+    req.flash('success_msg', 'Sesion cerrada corectamente')
     res.redirect('/users/singin')
 }
 

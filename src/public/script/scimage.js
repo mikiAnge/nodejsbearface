@@ -2,6 +2,8 @@ const imageUpload = document.getElementById('imageUpload')
 const name = document.getElementById('name').value
 const lastname = document.getElementById('lastname').value
 
+//
+document.getElementById('resobt').append('Espere un momento...')
 Promise.all([
     //ver si se puede subir un nivel para la ruta
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
@@ -14,10 +16,14 @@ async function start() {
     container.style.position = 'relative'
     document.body.append(container)*/
     const labeledFaceDescriptors = await loadLabeledImages()
+    // FaceMatcher(Descriptor, Distancia) Distancia probable de que una persona sea la correcta mientras mas alto es mas probable que todos sean esa persona ha buscar, y de lo contrario mientras mas bajo se requiere de mas datos para su valoración, por eso se opta por un punto intermedio para una obtención de resultados fiable sin tener que cargar de mucha información
     const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
     let image
     let canvas
-    document.body.append('Loaded')
+
+    document.getElementById('resobt').innerHTML = ""
+    document.getElementById('resobt').append('Cargado!!!')
+    
     imageUpload.addEventListener('change', async () => {
         if (image) image.remove()
         if (canvas) canvas.remove()
