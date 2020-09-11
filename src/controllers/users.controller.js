@@ -4,13 +4,24 @@ const passport = require('passport')
 
 const User = require('../models/User')
 
-usersCtrl.renderSingUpForm = (req, res) => {
-    res.render('users/singup')
+usersCtrl.renderSingUpForm = async (req, res) => {
+    await User.find().sort({ nameinstitucion: 'desc' })
+    .then(usersItem => {
+        const myObject = {
+            users: usersItem.map(item => {
+                return {
+                    nameinstitucion: item.nameinstitucion
+                }
+            })
+        }
+        const users = myObject.users
+        res.render('users/singup', { users })
+    })
 }
 
 usersCtrl.singup = async (req, res) => {
     const errors = []
-    const {name, lastname, ci, extension, numcontact, email, nameuser, password, confirm_password} = req.body
+    const {name, lastname, ci, extension, numcontact, nameinstitucion, email, nameuser, password, confirm_password} = req.body
     if (password != confirm_password) {
         errors.push({text: 'Las contraseñas no son iguales'})
     }
@@ -25,6 +36,7 @@ usersCtrl.singup = async (req, res) => {
             ci,
             extension,
             numcontact,
+            nameinstitucion,
             email,
             nameuser
         })
@@ -40,7 +52,7 @@ usersCtrl.singup = async (req, res) => {
             res.redirect('/users/singup')
         }
         else {
-            const newUser = new User({name, lastname, ci, extension, numcontact, email, nameuser, password})
+            const newUser = new User({name, lastname, ci, extension, numcontact, nameinstitucion, email, nameuser, password})
             newUser.password = await newUser.encryptPassword(password)
             await newUser.save()
             req.flash('success_msg', 'Registrado correctamente')

@@ -7,7 +7,7 @@ indexCtrl.renderIndex = (req, res) => {
     res.render('index')
 }
 indexCtrl.renderImage = async (req, res) => {
-    const { name, lastname } = req.params
+    const { name, lastname } = req.body
     await Person.find({ name, lastname })
         .then(personsItem => {
             const myObject = {
@@ -34,7 +34,7 @@ indexCtrl.renderCamera = (req, res) => {
     res.render('cameradetect')
 }
 indexCtrl.renderVideo = async (req, res) => {
-    const { name, lastname } = req.params
+    const { name, lastname } = req.body
     await Person.find({ name, lastname })
         .then(personsItem => {
             const myObject = {

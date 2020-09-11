@@ -3,16 +3,19 @@
 <div class="offset-md-3">
     <form action="/persons/see" method="POST">
         <div class="form-row align-items-center">
-            <div class="col-sm-3 my-1">
+            <!--<div class="col-sm-3 my-1" id="nombre">
+                <div>
                 <input type="text" class="form-control text-center" name="name" placeholder="name">
-            </div>
-            <div class="col-sm-3 my-1">
-                <input type="text" class="form-control text-center" name="lastname" placeholder="lastname" autocapitalize="words">
+                </div>
+            </div>-->
+            <div class="col-sm-3 my-1" id="ci">
+                <div>
+                <input type="text" class="form-control text-center" name="ci" placeholder="Cedula de Identidad" autocapitalize="words">
+                </div>
             </div>
             <div class="col-auto my-1">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-user"></i> Busqueda</button>
             </div>
-
         </div>
     </form>
     </div>
@@ -27,6 +30,9 @@
                     </h5>
                     <h5 class="card-tittle">
                         Edad: {{age}}
+                    </h5>
+                    <h5 class="card-tittle">
+                        C.I.: {{ci}} {{extension}}
                     </h5>
                     <p class="card-text"> {{description}} </p>
                     <p class="card-text"> {{time_ago updatedAt}} </p>
@@ -43,8 +49,9 @@
         <!--Si no hay datos mostrara un mesaje por pantalla-->
         <div class="card mx-auto">
             <div class="card-body">
-                <p class="lead">There are not registers yet.</p>
-                <a href="/persons/add" class="btn btn-success btn-block">Create One!</a>
+                <p class="lead">No se cuenta con ningun dato registrado</p>
+                <p class="lead"> de las personas a buscar.</p>
+                <a href="/persons/add" class="btn btn-success btn-block">Registra uno!!!</a>
             </div>
         </div>
         {{/each}}

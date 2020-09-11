@@ -24,6 +24,10 @@ const UserSchema = new Schema({
         type: Number,
         required: false
     },
+    nameinstitucion: {
+        type: String,
+        required: false
+    },
     email: {
         type: String,
         required: true,

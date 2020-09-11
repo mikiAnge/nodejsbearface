@@ -16,10 +16,10 @@
                         Reconocimiento AI
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/imagedetect/{{''}}/{{''}}"><i class="fas fa-image"></i> Imagen Detect</a>
+                        <a class="dropdown-item" href="/imagedetect/dat"><i class="fas fa-image"></i> Imagen Detect</a>
                         <a class="dropdown-item" href="/cameradetect"><i class="fas fa-camera-retro"></i> Camara
                             Detect</a>
-                        <a class="dropdown-item" href="/videodetect/{{''}}/{{''}}"><i class="fas fa-video"></i> Video Detect</a>
+                        <a class="dropdown-item" href="/videodetect/dat"><i class="fas fa-video"></i> Video Detect</a>
                     </div>
                 </li>
             </ul>
@@ -39,24 +39,22 @@
                 </li>
                 {{else}}
                 <li class="nav-item">
-                    <a href="/users/singin" class="nav-link bg-success">Login</a>
+                    <a href="/users/singin" class="nav-link bg-success">Inicie Sesión</a>
                 </li>
                 {{/if}}
-                {{#with user as | users |}}
-                    {{#compare users.email "!=" 'admin@prueba.com'}}
-                        <li class="nav-item">
-                            <a href="/users/singup" class="nav-link">New User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link bg-danger" href="/users/logout">Logout</a>
-                        </li>
-                    {{else}}
-                        <li class="nav-item">
-                            <a class="nav-link bg-danger" href="/users/logout">Logout</a>
-                            <a>{{users}}</a>
-                        </li>
-                    {{/compare}}
-                {{/with}}
+                {{#if user}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{user.name}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/users/singup">Nuevo Usuario</a>
+                        <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+                {{/if}}
             </ul>
             <!--
             <ul class="navbar-nav ml-auto">

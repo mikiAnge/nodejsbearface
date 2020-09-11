@@ -6,14 +6,19 @@
 <div class="container p-2">
     <div class="offset-md-3">
         <div class="row text-center">
-            {{#with persons.[0]}}
+            {{#repite persons}}
             <h1>
                 {{name}} {{lastname}} > Edad: {{age}}
             </h1>
-            <input type="hidden" id="name" value="{{name}} ">
-            <input type="hidden" id="lastname" value="{{lastname}}">
-            {{/with}}
+            {{/repite}}
             <div class="d-none">
+                <table id="namelastname">
+                    {{#each persons}}
+                    <tr>
+                        <td>{{name}} {{lastname}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
                 <table id="path">
                     {{#each persons}}
                     <tr>
@@ -24,10 +29,10 @@
             </div>
         </div>
     </div>
+    {{#if persons}}
     <div id="resobt"></div>
 </div>
-{{#if persons}}
-<input type="file" id="imageUpload">
+<input type="file" class="btn-info" id="imageUpload">
 <div class="Contenedor" id="contenedor"> </div>
 {{else}}
 <div class="container p-2">
@@ -39,6 +44,10 @@
         <p>Una vez se encuentre logueado en al herramienta, necesita revisar si los datos de la persona ha buscar se encuentran registrados, de lo contrario registrar los nuevos datos, echo esto se requerira el nombre y el apellido como datos para la busqueda
         </p>
         <img src="/style/img/busqueda.png" class="mx-auto d-block m-4 logo">
+        <p>Del mismo modo se puede realizar una busqueda doble de personas que se encuenren un a misma imagen ha analizar.
+        </p>
+        <p><h4>Tomar en cuenta:</h4> que para una busqueda doble se requiere que se digiten tanto el nombre como el apellido de la persona, de lo contrario no se encontrara las coincidencias en la base de datos</p>
+        <img src="/style/img/busquedadoble.png" class="mx-auto d-block m-4 logo">
     </div>
 </div>
 {{/if}}

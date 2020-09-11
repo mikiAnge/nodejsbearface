@@ -9,9 +9,9 @@ personCtrl.renderPersonForm = (req, res) => {
 
 personCtrl.uploadPerson = async (req, res) => {
     const errors = []
-    const { name, lastname, age, description } = req.body
+    const { name, lastname, age, ci, extension, description } = req.body
     const { filename, originalname, mimetype, size } = req.file
-    const path = '/media/labeled_images/' + req.file.filename
+    const path = '/media/labeled_images/'+req.file.filename
 
     if (name == "") {
         errors.push({text: 'Rellene el campo de nombre'})
@@ -22,15 +22,23 @@ personCtrl.uploadPerson = async (req, res) => {
     if (age == "") {
         errors.push({text: 'Rellene el campo de edad'})
     }
+    if (ci == "") {
+        errors.push({text: 'Rellene el campo de Cedula de identidad'})
+    }
+    if (extension == "") {
+        errors.push({text: 'Seleccione una extensión'})
+    }
     if (filename == ""){
         errors.push({text: 'Debe seleccionar una imagen'})
     }
     if (errors.length > 0) {
         res.render('persons/register-person', {
-            errors, name, lastname, age, description
+            errors, name, lastname, age, ci, description
         })
     } else{
-        const newPerson = new Person({ name, lastname, age, description, filename, path, originalname, mimetype, size })
+        const newPerson = new Person({ name, lastname, age, ci, extension, description, filename, path, originalname, mimetype, size })
+        //guardando id o el dato requerido del usuario que se loguea junto con el registro
+        newPerson.institution = req.user.nameinstitucion
 
         await newPerson.save()
         req.flash('success_msg', 'Datos Añadidos Satisfactoriamente')
@@ -39,7 +47,7 @@ personCtrl.uploadPerson = async (req, res) => {
 }
 
 personCtrl.renderRegisterPersons = async (req, res) => {
-    await Person.find().sort({ updatedAt: 'desc' })
+    await Person.find({institution: req.user.nameinstitucion}).sort({ updatedAt: 'desc' })
         .then(personsItem => {
             const myObject = {
                 persons: personsItem.map(item => {
@@ -48,6 +56,8 @@ personCtrl.renderRegisterPersons = async (req, res) => {
                         name: item.name,
                         lastname: item.lastname,
                         age: item.age,
+                        ci: item.ci,
+                        extension: item.extension,
                         description: item.description,
                         path: item.path,
                         updatedAt: item.updatedAt
@@ -60,9 +70,35 @@ personCtrl.renderRegisterPersons = async (req, res) => {
 }
 
 personCtrl.searchPerson = async (req, res) => {
-    const { name, lastname } = req.body
-    if (name && lastname) {
-        await Person.find({ name, lastname })
+    const { ci } = req.body
+    //const { name, ci } = req.body
+    //console.log(name, lastname)
+    if (ci != '') {
+        await Person.find({ ci, institution: req.user.nameinstitucion })
+            .then(personsItem => {
+                const myObject = {
+                    persons: personsItem.map(item => {
+                        return {
+                            id: item._id,
+                            name: item.name,
+                            lastname: item.lastname,
+                            age: item.age,
+                            ci: item.ci,
+                            description: item.description,
+                            path: item.path,
+                            updatedAt: item.updatedAt
+                        }
+                    })
+                }
+                const persons = myObject.persons
+                res.render('persons/see-person', { persons })
+                //console.log(persons)
+                //console.log(lastname)
+            })
+    }
+    /*
+    if (name != '' && ci != '') {
+        await Person.find({ name, ci })
             .then(personsItem => {
                 const myObject = {
                     persons: personsItem.map(item => {
@@ -83,7 +119,9 @@ personCtrl.searchPerson = async (req, res) => {
                 //console.log(name, lastname)
             })
     }
-    else if (name) {
+    else if (name != '') {
+
+        //console.log(name.length, lastname.length)
         await Person.find({ name })
             .then(personsItem => {
                 const myObject = {
@@ -106,7 +144,7 @@ personCtrl.searchPerson = async (req, res) => {
             })
     }
     else {
-        await Person.find({ lastname })
+        await Person.find({ ci })
             .then(personsItem => {
                 const myObject = {
                     persons: personsItem.map(item => {
@@ -126,7 +164,7 @@ personCtrl.searchPerson = async (req, res) => {
                 //console.log(persons)
                 //console.log(lastname)
             })
-    }
+    }*/
 }
 
 personCtrl.renderSeePerson = (req, res) => {

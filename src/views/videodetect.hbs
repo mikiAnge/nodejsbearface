@@ -1,21 +1,26 @@
 <head>
     <!--SCRIPTS DE RECONOCIMIENTO-->
-
     <script defer src="/script/face-api.min.js"></script>
     <script defer src="/script/scvideo.js"></script>
+    <!--<script defer src="/script/listvideoprueba.js"></script>-->
 </head>
 
 <div class="container p-2">
     <div class="offset-md-3">
         <div class="row text-center">
-            {{#with persons.[0]}}
+            {{#repite persons}}
             <h1>
                 {{name}} {{lastname}} > Edad: {{age}}
             </h1>
-            <input type="hidden" id="name" value="{{name}} ">
-            <input type="hidden" id="lastname" value="{{lastname}}">
-            {{/with}}
+            {{/repite}}
             <div class="d-none">
+                <table id="namelastname">
+                    {{#each persons}}
+                    <tr>
+                        <td>{{name}} {{lastname}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
                 <table id="path">
                     {{#each persons}}
                     <tr>
@@ -26,11 +31,35 @@
             </div>
         </div>
     </div>
-{{#if persons}}
-    <input type="file" id="videoUpload">
     <div id="resobt"></div>
 </div>
-<video id="video" width="860" height="484" autoplay loop muted></video>
+{{#if persons}}
+    <input type="file" class="btn-info" id="videoUpload" multiple>
+        <!--Pop up para ver el tiempo de coincidencia-->
+        <div class="container">
+            <div class="mt-4 offset-md-0">
+                    <label>Ver tiempos de las coincidencias ubicadas</label>
+                    <button class="open-button" onclick="openRegister()">Revisar Datos</button>
+                    <div class="form-popup" id="myForm">
+                        <form action="#" class="form-container">
+                            <h3>Tiempos donde se obtuvieron coincidencias de: </h3>
+                            {{#repite persons}}
+                            <input type="text" id="name" placeholder="{{name}} {{lastname}}" disabled>
+                            {{/repite}}
+                            <div class="form-group">
+                                <textarea class="form-control" id="datos"></textarea>
+                            </div>
+                            <!--<button type="hidden" class="btn">Guardar</button>-->
+                            <button type="button" class="btn cancel" onclick="closeRegister()">Cerrar</button>
+                        </form>
+                    </div>
+                    <h5 id="resobt"></h5>
+            </div>
+        </div>
+    </div>
+<div class="Contenedor" id="contenedor">
+    <video id="video" width="860" height="484" autoplay controls muted></video>
+</div>
 {{else}}
 <div class="container p-2">
     <div class="bg-info p-5">

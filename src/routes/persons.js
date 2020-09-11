@@ -27,4 +27,4 @@ router.get('/persons/update',isAuthenticated, renderSeePerson)
 //Eliminar registros
 router.delete('/persons/delete/:id', deleteDate)
 
-module.exports = router
+module.exports = router 

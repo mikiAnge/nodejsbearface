@@ -1,6 +1,11 @@
+<head>
+    <!--SCRIPTS DE SELECT-->
+    <script defer src="/script/select.js"></script>
+</head>
+
 <div class="container p-4">
 <div class="row">
-    <div class="col-md-4 mx-auto">
+    <div class="col-md-5 mx-auto">
         <div class="card">
             <div class="card-header">
                 Registro de Usuario
@@ -15,10 +20,10 @@
                         <input type="text" class="form-control" name="lastname" placeholder="Apellido" value="{{apellido}}">
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" name="numcontact" placeholder="Numero de Cel" value="{{123456978}}">
+                        <input type="number" class="form-control" name="numcontact" placeholder="Numero de Cel" value="{{numcontact}}">
                     </div>
                     <div class="form-group row">
-                        <input type="text" class="form-control col-sm-6 mx-3" name="ci" placeholder="Ci" value="{{0123456789}}" pattern="[0-9].{7,}" title="Ingrese solo numeros Ejm:0123456789">
+                        <input type="text" class="form-control col-sm-6 mx-3" name="ci" placeholder="Cedula de Identidad" value="{{ci}}" pattern="[0-9].{7,}" title="Ingrese solo numeros Ejm:0123456789">
                         <select class="form-control col-sm-4" name="extension">
                             <option>Extension</option>
                             <option>Tja</option>
@@ -30,6 +35,15 @@
                             <option>Lp</option>
                             <option>Bn</option>
                             <option>Pd</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <input type="text" class="form-control col-sm-6 mx-3" name="nameinstitucion" id="nameinstitucion" placeholder="Nombre de Institución" value="{{nameinstitucion}}"> <h5> ó &nbsp;</h5> 
+                        <select class="form-control col-sm-4" id="instituciones" onchange='cambioOpciones();'>
+                            <option value="">Sel. Aquí</option>
+                            {{#repite users}}
+                            <option>{{nameinstitucion}}</option>
+                            {{/repite}}
                         </select>
                     </div>
                     <div class="form-group">

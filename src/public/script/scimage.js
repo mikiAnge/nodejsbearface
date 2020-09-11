@@ -1,6 +1,5 @@
 const imageUpload = document.getElementById('imageUpload')
-const name = document.getElementById('name').value
-const lastname = document.getElementById('lastname').value
+//const namelastname = document.getElementById('namelastname').value
 
 //
 document.getElementById('resobt').append('Espere un momento...')
@@ -22,7 +21,7 @@ async function start() {
     let canvas
 
     document.getElementById('resobt').innerHTML = ""
-    document.getElementById('resobt').append('Cargado!!!')
+    document.getElementById('resobt').append('Cargado seleccione una imagen!!!')
     
     imageUpload.addEventListener('change', async () => {
         if (image) image.remove()
@@ -59,22 +58,37 @@ async function start() {
 }
 
 function loadLabeledImages() {
-    const nombre = name + lastname
-    const labels = [nombre]
+    const nombres = nameLastname()
     const path = pathImages()
-    //console.log(path)
-    //console.log('direccion',path[2])
-    //console.log('Mostar aqui', labels)
+    //Obteniendo la cantidad de datos que corresponden a uno o mas nombres
+    const labels = nombres.reduce((newTempNom, nom) => (newTempNom.includes(nom) ? newTempNom : [...newTempNom, nom]), [])
+    
+    let totDatNom = nombres.reduce((contNombre, nomb) => {contNombre[nomb] = (contNombre[nomb] || 0)+1
+    return contNombre}, {})
+    totDatNom = Object.keys(totDatNom).map(function (nomb) {
+        const canti = []
+        canti.push(totDatNom[nomb])
+        return parseInt(canti)
+    })
+    //----------------------------//
+    let p = 0
+    let j = 0
+    let max = totDatNom[p]
+
     return Promise.all(
         //Manejando bd en labels almacenar el nombre a buscar y mandar con esto los ids de las imagenes relacionadas a ese nombre
         labels.map(async label => {
             const descriptions = []
-            for (let i = 0; i < path.length; i++) {
-                const img = await faceapi.fetchImage(`${path[i]}`)
+            for (j; j < max; j++) {
+                console.log(j, max, label)
+                const img = await faceapi.fetchImage(`${path[j]}`)
                 const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
                 descriptions.push(detections.descriptor)
             }
-
+            j = totDatNom[p]
+            p ++
+            max += totDatNom[p]
+            //console.log(j,p,v,max)
             return new faceapi.LabeledFaceDescriptors(label, descriptions)
         })
     )
@@ -84,7 +98,16 @@ function pathImages() {
     const temp = document.getElementById("path")
     const rutas = []
     for (let i = 0; i < temp.rows.length; i++) {
-        rutas.push(temp.rows[i].innerText)
+        rutas.push((temp.rows[i].innerText).trim())
     }
     return rutas
+}
+
+function nameLastname() {
+    const temp = document.getElementById("namelastname")
+    const names = []
+    for (let i = 0; i < temp.rows.length; i++) {
+        names.push((temp.rows[i].innerText).trim())
+    }
+    return names
 }

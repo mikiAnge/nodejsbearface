@@ -7,12 +7,15 @@ router.get('/', renderIndex)
 
 //router.get('/imagedetect', renderImage)
 
-router.get('/imagedetect/:name/:lastname', renderImage)
+router.get('/imagedetect/dat', renderImage)
+
+router.post('/imagedetect/dat', renderImage)
 
 router.get('/cameradetect', renderCamera)
 
 //router.get('/videodetect', renderVideo)
-router.get('/videodetect/:name/:lastname', renderVideo)
+router.get('/videodetect/dat', renderVideo)
 
+router.post('/videodetect/dat', renderVideo)
 
 module.exports = router

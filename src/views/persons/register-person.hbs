@@ -16,6 +16,22 @@
                     <div class="form-group">
                         <input type="text" name="age" placeholder="Edad" class="form-control">
                     </div>
+
+                    <div class="form-group row">
+                        <input type="text" class="form-control col-sm-6 mx-3" name="ci" placeholder="Cedula de Identidad" value="{{ci}}" pattern="[0-9].{7,}" title="Ingrese solo numeros Ejm:0123456789">
+                        <select class="form-control col-sm-4" name="extension">
+                            <option>Extension</option>
+                            <option>Tja</option>
+                            <option>Cbba</option>
+                            <option>Chq</option>
+                            <option>Sc</option>
+                            <option>Pt</option>
+                            <option>Or</option>
+                            <option>Lp</option>
+                            <option>Bn</option>
+                            <option>Pd</option>
+                        </select>
+                    </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Cargar</span>
