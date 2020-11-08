@@ -11,7 +11,11 @@ Para la conexión con la base de datos se debe de crear un **.env** en la raiz d
 FACIAL_APP_MONGODB_HOST=localhost
 FACIAL_APP_MONGODB_DATABASE=facials-db-app
 ```
-_Echo ya todo esto ahora si ejecuta el comando para iniciar el servicio del proyecto, he ingresar en nuestro navegador:_
+_Echo ya todo esto ahora si ejecuta el comando para iniciar el servicio del proyecto_
+```
+npm start
+```
+_Ahora desde nuestro navegador ingresamos al servicio del proyecto:_
 ```
 localhost:4000 || puerto por defecto 4000: modificable
 ```
