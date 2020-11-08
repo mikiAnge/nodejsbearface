@@ -14,7 +14,7 @@ const {isAuthenticated} = require('../helpers/validateauth')
 //Nuevos Registros
 router.get('/registers/add',isAuthenticated, renderRegisterForm)
 
-router.post('/registers/new-register',isAuthenticated, createNewRegister)
+router.post('/registers/upload',isAuthenticated, createNewRegister)
 
 //Obtener todos los registros
 router.get('/registers',isAuthenticated, renderRegisters)

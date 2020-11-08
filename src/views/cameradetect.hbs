@@ -5,7 +5,51 @@
     <script defer src="/script/sccamera.js"></script>
 </head>
 
+<div class="container p-2">
+    <div class="offset-md-3">
+        <div class="row text-center">
+            {{#repite persons}}
+            <h1>
+                {{name}} {{lastname}} > Edad: {{age}}
+            </h1>
+            {{/repite}}
+            <div class="d-none">
+                <table id="namelastname">
+                    {{#each persons}}
+                    <tr>
+                        <td>{{name}} {{lastname}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+                <table id="path">
+                    {{#each persons}}
+                    <tr>
+                        <td>{{path}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="resobt"></div>
+</div>
+{{#if persons}}
+        <div class="container">
+            <div class="mt-4 offset-md-0">
+                    <h5 id="resobt"></h5>
+            </div>
+        </div>
+    </div>
 <!--Para hacer ajustes en el tamaño del canvas tocar aqui solo para video-->
 <div class="Contenedor" id="contenedor">
-    <video id="video" width="860" height="646" autoplay></video>
+    <video id="video" width="860" height="646" playsinline autoplay muted></video>
 </div> 
+{{else}}
+<div class="container p-2">
+    <div class="bg-danger p-4">
+        <h2>Error!!!</h2>
+        <p>No se encontro ningun dato para analizar,</p>
+        <p>realice una busqueda primero</p>
+    </div>
+</div>
+{{/if}}

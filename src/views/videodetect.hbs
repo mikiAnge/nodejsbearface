@@ -41,15 +41,15 @@
                     <label>Ver tiempos de las coincidencias ubicadas</label>
                     <button class="open-button" onclick="openRegister()">Revisar Datos</button>
                     <div class="form-popup" id="myForm">
-                        <form action="#" class="form-container">
+                        <form action="/registers/upload" method="POST" class="form-container">
                             <h3>Tiempos donde se obtuvieron coincidencias de: </h3>
                             {{#repite persons}}
-                            <input type="text" id="name" placeholder="{{name}} {{lastname}}" disabled>
+                            <input type="text" name="name" id="name" placeholder="{{name}} {{lastname}}" value="{{name}} {{lastname}}">
                             {{/repite}}
                             <div class="form-group">
-                                <textarea class="form-control" id="datos"></textarea>
+                                <textarea class="form-control" name="datos" id="datos"></textarea>
                             </div>
-                            <!--<button type="hidden" class="btn">Guardar</button>-->
+                            <button type="submit" class="btn">Guardar</button>
                             <button type="button" class="btn cancel" onclick="closeRegister()">Cerrar</button>
                         </form>
                     </div>
@@ -58,18 +58,14 @@
         </div>
     </div>
 <div class="Contenedor" id="contenedor">
-    <video id="video" width="860" height="484" autoplay controls muted></video>
+    <video id="video" width="860" height="484" autoplay muted></video>
 </div>
 {{else}}
 <div class="container p-2">
-    <div class="bg-info p-5">
-        <h2>Nota:</h2>
-        <p>Para usar la herramienta de analisis de video, primeramente necesita estar Logueado
-        </p>
-        <img src="/style/img/login.png" class="mx-auto d-block m-4 logo">
-        <p>Una vez se encuentre logueado en al herramienta, necesita revisar si los datos de la persona ha buscar se encuentran registrados, de lo contrario registrar los nuevos datos, echo esto se requerira el nombre y el apellido como datos para la busqueda
-        </p>
-        <img src="/style/img/busqueda.png" class="mx-auto d-block m-4 logo">
+    <div class="bg-danger p-4">
+        <h2>Error!!!</h2>
+        <p>No se encontro ningun dato para analizar,</p>
+        <p>realice una busqueda primero</p>
     </div>
 </div>
 {{/if}}

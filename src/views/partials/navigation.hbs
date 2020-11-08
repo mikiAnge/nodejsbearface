@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand animated rubberBand" href="/">FaceDetection</a>
+        <a class="navbar-brand animated rubberBand" href="/">RecognitionFace</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,17 +10,8 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/"><i class="fas fa-home"></i>Home</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Reconocimiento AI
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/imagedetect/dat"><i class="fas fa-image"></i> Imagen Detect</a>
-                        <a class="dropdown-item" href="/cameradetect"><i class="fas fa-camera-retro"></i> Camara
-                            Detect</a>
-                        <a class="dropdown-item" href="/videodetect/dat"><i class="fas fa-video"></i> Video Detect</a>
-                    </div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/help"><i class="fas fa-question"></i>Ayuda</a>
                 </li>
             </ul>
 
@@ -32,9 +23,12 @@
                         Registros
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        &nbsp;Personas:
                         <a class="dropdown-item" href="/persons">Ver Registros</a>
                         <a class="dropdown-item" href="/persons/add">Añadir Datos</a>
                         <div class="dropdown-divider"></div>
+                        &nbsp;Busquedas:
+                        <a class="dropdown-item" href="/registers">Ver Registros</a>
                     </div>
                 </li>
                 {{else}}

@@ -14,7 +14,7 @@
                 </div>-->
                 <div class="col-sm-3 my-1" id="ci">
                     <div>
-                    <input type="text" class="form-control text-center" name="ci" placeholder="Cedula de Identidad">
+                    <input type="text" class="form-control text-center" name="ci" title="Digite la Cedula de Identidad de la Persona ha buscar" placeholder="Cedula de Identidad" required>
                     {{#repite persons}}
                     <div class="d-none">
                         <input type="text" name="ci" value="{{ci}}" readonly>
@@ -60,8 +60,7 @@
                 <div class="col-auto my-1">
                     <form action="/imagedetect/dat" method="POST">
                         {{#repite persons}}
-                            <input type="hidden" name="name" value="{{name}}">
-                            <input type="hidden" name="lastname" value="{{lastname}}">
+                            <input type="hidden" name="ci" value="{{ci}}">
                         {{/repite}}
                         <button type="submit" class="btn btn-primary"><i class="fa fa-image">Imagen</i></button>
                     </form>
@@ -69,12 +68,19 @@
                 <div class="col-auto my-1">
                     <form action="/videodetect/dat" method="POST">
                         {{#repite persons}}
-                            <input type="hidden" name="name" value="{{name}}">
-                            <input type="hidden" name="lastname" value="{{lastname}}">
+                            <input type="hidden" name="ci" value="{{ci}}">
                         {{/repite}}
                         <button type="submit" class="btn btn-secondary"><i class="fa fa-video"> Video</i></button>
                     </form>
                 </div>
+                <!--<div class="col-auto my-1">
+                    <form action="/cameradetect/dat" method="POST">
+                        {{#repite persons}}
+                            <input type="hidden" name="ci" value="{{ci}}">
+                        {{/repite}}
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-camera">WebCam</i></button>
+                    </form>
+                </div>-->
             {{/if}}
         </div>
         <div class="col-sm-6">

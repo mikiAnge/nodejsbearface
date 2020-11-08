@@ -40,7 +40,7 @@ async function startVideo() {
 
         document.getElementById('datos').append('Nombre de archivo: '+videoUpload.files[curVideo].name+'\n')
 
-        console.log(nextVideo.length)
+        //console.log(nextVideo.length)
         video.onended = function() {
             ++curVideo
             if(curVideo < nextVideo.length){

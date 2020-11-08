@@ -7,23 +7,25 @@ registersCtrl.renderRegisterForm = (req, res) => {
 }
 
 registersCtrl.createNewRegister = async (req, res) => {
-    const { title, description } = req.body
-    const newRegister = new Register({ title, description })
+    const { name, datos } = req.body
+    const newRegister = new Register({ name, datos })
+    newRegister.institution = req.user.nameinstitucion
+    console.log(newRegister)
     await newRegister.save()
     //Enviando mensaje de la accion realizada
-    req.flash('success_msg', 'Registre Added Succesfully')
+    req.flash('success_msg', 'Guardado exitosamente')
     res.redirect('/registers')
 }
 
 registersCtrl.renderRegisters = async (req, res) => {
-    await Register.find().sort({ updatedAt: 'desc' })
+    await Register.find({institution: req.user.nameinstitucion}).sort({ updatedAt: 'desc' })
         .then(registersItem => {
             const myObject = {
                 registers: registersItem.map(item => {
                     return {
                         id: item._id,
-                        title: item.title,
-                        description: item.description
+                        name: item.name,
+                        datos: item.datos
                     }
                 })
             }

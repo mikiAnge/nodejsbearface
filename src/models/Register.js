@@ -1,13 +1,15 @@
 const {Schema, model} = require('mongoose')
 
 const RegisterSchema = new Schema({
-    title: { 
+    name: { 
         type: String, 
         required: true 
     },
-    description: { 
-        type: String, 
-        required: true 
+    datos: { 
+        type: String
+    },
+    institution: {
+        type: String
     }
 }, {
     timestamps: true
